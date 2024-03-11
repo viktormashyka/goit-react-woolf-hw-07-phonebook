@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.item {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.deleteButton {
+  padding: 5px 10px;
+  border-radius: 8px;
+}
