@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContactThunk } from 'store/contactsSlice';
+import { addContact } from 'store/operations';
 import { selectContacts } from 'store/selectors';
 import { toast } from 'react-toastify';
 import css from './ContactForm.module.css';
@@ -35,7 +35,7 @@ export const ContactForm = () => {
       return;
     }
 
-    dispatch(addContactThunk(newContact));
+    dispatch(addContact(newContact));
 
     setNewContact(INITIAL_STATE);
   };

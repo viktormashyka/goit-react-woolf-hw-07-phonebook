@@ -1,18 +1,17 @@
-import { MagnifyingGlass } from 'react-loader-spinner';
+import { Hourglass } from 'react-loader-spinner';
 import css from './Loader.module.css';
 
 export const Loader = () => {
   return (
     <div className={css.loaderWrapper}>
-      <MagnifyingGlass
+      <Hourglass
         visible={true}
-        height="120"
-        width="120"
-        ariaLabel="magnifying-glass-loading"
+        height="80"
+        width="80"
+        ariaLabel="hourglass-loading"
         wrapperStyle={{}}
-        wrapperClass="magnifying-glass-wrapper"
-        glassColor="#c0efff"
-        color="#e15b64"
+        wrapperClass=""
+        colors={['#c0efff', '#72a1ed']}
       />
     </div>
   );
