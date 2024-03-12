@@ -11,17 +11,19 @@ export const Filter = () => {
   };
 
   return (
-    <label className={css.label}>
-      Find contact by name
-      <input
-        className={css.input}
-        type="text"
-        placeholder="Enter name"
-        name="filter"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        value={filter}
-        onChange={handleChange}
-      />
-    </label>
+    <div className={css.filterWrapper}>
+      <label className={css.label}>
+        Find contact by name
+        <input
+          className={css.input}
+          type="text"
+          placeholder="Enter name"
+          name="filter"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          value={filter}
+          onChange={handleChange}
+        />
+      </label>
+    </div>
   );
 };

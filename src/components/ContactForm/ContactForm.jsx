@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'store/contactsSlice';
+import { addContactThunk } from 'store/contactsSlice';
+import { selectContacts } from 'store/selectors';
 import { toast } from 'react-toastify';
-import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
-import { getContacts } from 'store/selectors';
 
 const INITIAL_STATE = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export const ContactForm = () => {
   const [newContact, setNewContact] = useState(INITIAL_STATE);
 
-  const contacts = useSelector(getContacts);
+  const { items } = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleChange = evt => {
@@ -26,7 +25,7 @@ export const ContactForm = () => {
     evt.preventDefault();
 
     if (
-      contacts.some(
+      items.some(
         contact =>
           contact.name.toLocaleLowerCase() ===
           newContact.name.toLocaleLowerCase()
@@ -36,12 +35,12 @@ export const ContactForm = () => {
       return;
     }
 
-    dispatch(addContact({ ...newContact, id: nanoid() }));
+    dispatch(addContactThunk(newContact));
 
     setNewContact(INITIAL_STATE);
   };
 
-  const { name, number } = newContact;
+  const { name, phone } = newContact;
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <label className={css.label}>
@@ -62,9 +61,9 @@ export const ContactForm = () => {
           className={css.input}
           type="tel"
           placeholder="Enter phone number"
-          name="number"
+          name="phone"
           required
-          value={number}
+          value={phone}
           onChange={handleChange}
         />
       </label>

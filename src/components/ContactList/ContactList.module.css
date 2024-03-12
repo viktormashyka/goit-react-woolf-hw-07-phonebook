@@ -1,14 +1,11 @@
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 16px;
+.contactTable {
+  border-collapse: collapse; /* Злиття меж комірок */
+  border-radius: 8px;
 }
 
-.item {
-  display: flex;
-  gap: 5px;
-  align-items: center;
+.contactTable th,
+.contactTable td {
+  padding: 5px;
 }
 
 .text {
