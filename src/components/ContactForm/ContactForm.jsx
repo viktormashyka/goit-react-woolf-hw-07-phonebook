@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'store/operations';
-import { selectContacts } from 'store/selectors';
+import { selectContactsItems } from 'store/selectors';
 import { toast } from 'react-toastify';
 import css from './ContactForm.module.css';
 
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 export const ContactForm = () => {
   const [newContact, setNewContact] = useState(INITIAL_STATE);
 
-  const { items } = useSelector(selectContacts);
+  const contacts = useSelector(selectContactsItems);
   const dispatch = useDispatch();
 
   const handleChange = evt => {
@@ -25,7 +25,7 @@ export const ContactForm = () => {
     evt.preventDefault();
 
     if (
-      items.some(
+      contacts.some(
         contact =>
           contact.name.toLocaleLowerCase() ===
           newContact.name.toLocaleLowerCase()

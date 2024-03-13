@@ -1,16 +1,23 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'store/operations';
-import { selectContacts, selectFilter } from 'store/selectors';
+import {
+  selectContactsItems,
+  selectContactsIsLoading,
+  selectContactsError,
+  selectFilter,
+} from 'store/selectors';
 import { Loader } from 'components/Loader/Loader';
 import css from './ContactList.module.css';
 
 export const ContactList = () => {
-  const { items, isLoading, error } = useSelector(selectContacts);
+  const contacts = useSelector(selectContactsItems);
+  const isLoading = useSelector(selectContactsIsLoading);
+  const error = useSelector(selectContactsError);
   const filter = useSelector(selectFilter);
 
   const dispatch = useDispatch();
 
-  const filteredContacts = items.filter(contact =>
+  const filteredContacts = contacts.filter(contact =>
     contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
   );
 
@@ -22,7 +29,7 @@ export const ContactList = () => {
     <>
       {isLoading && <Loader />}
       {error && <p className={css.text}>{error}</p>}
-      {!error && items.length > 0 && (
+      {!error && contacts.length > 0 && (
         <table className={css.contactTable}>
           <thead>
             <tr>
